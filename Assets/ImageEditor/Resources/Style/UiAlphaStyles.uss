@@ -1,0 +1,14 @@
+#title {
+}
+
+#width-field > Label {
+}
+
+#height-field > Label {
+}
+
+#alpha-input > #unity-text-input {
+    width: 30px;
+    max-width: 30px;
+    min-width: 30px;
+}
