@@ -41,7 +41,7 @@ public class ImageAlphaEditor : EditorWindow
         _alphaDropDown = root.Q<DropdownField>("alpha-dropdown");
         _textureOption = root.Q<DropdownField>("texture-option");
         _alphaGradient = root.Q<GradientField>();
-        _imagePreview = root.Q<VisualElement>("custom-tex-values");
+        _imagePreview = root.Q<VisualElement>("image-preview");
         _alphaSlider = root.Q<SliderInt>();
         _exportButton = root.Q<Button>("export-button");
         _createTexButton = root.Q<Button>("create-tex-button");
@@ -69,7 +69,36 @@ public class ImageAlphaEditor : EditorWindow
 
     private void CreateTexture()
     {
-       
+        var textureWidth = _widthField.value;
+        var textureHeight = _heightField.value;
+        _selectedTexture = new Texture2D(textureWidth , textureHeight , TextureFormat.RGBA32 ,false);
+        for(var i = 0; i < textureWidth ; i++)
+        {
+            for(var j = 0 ; j <textureHeight ; j++)
+            {
+                _selectedTexture.SetPixel(i , j , Color.white);
+            }
+        }
+
+        _selectedTexture.Apply();
+
+        var greaterWidth = (textureWidth > textureHeight);
+        var xRatio = 1f;
+        var yRatio = 1f;
+        if(greaterWidth)
+        {
+            yRatio = (float) textureHeight / (float) textureWidth;
+        }
+        else
+        {
+            xRatio = (float) textureWidth / (float) textureHeight;
+        }
+
+        _imagePreview.style.width = 300f * xRatio;
+        _imagePreview.style.height = 300f * yRatio;
+
+        ApplyAlphaGradient();
+
     }
 
     private void ExportImage(Texture2D outputTexture)
@@ -99,16 +128,29 @@ public class ImageAlphaEditor : EditorWindow
 
     private void TextureOptionSelected(ChangeEvent<string> evt)
     {
-        throw new System.NotImplementedException();
+        ApplyAlphaGradient();
     }
 
     private void AlphaOptionSelected(ChangeEvent<string> evt)
     {
-        throw new System.NotImplementedException();
+        ApplyAlphaGradient();
     }
 
     private void TextureSelected(ChangeEvent<Object> evt)
     {
         throw new System.NotImplementedException();
+    }
+
+    private void ApplyAlphaGradient()
+    {
+        if(_selectedTexture == null)
+        {
+            _exportButton.SetEnabled(false);
+            return;
+        }
+        _exportButton.SetEnabled(true);
+        _outputTexture = _selectedTexture;
+        _imagePreview.style.backgroundImage = _outputTexture;
+
     }
 }

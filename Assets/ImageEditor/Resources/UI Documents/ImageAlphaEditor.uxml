@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/ImageEditor/Resources/Style/UiAlphaStyles.uss?fileID=7433441132597879392&amp;guid=c5d5a8ee670d248a78cf9805186524cd&amp;type=3#UiAlphaStyles" />
-    <ui:Label text="Image Editor" display-tooltip-when-elided="true" name="title" style="height: 50px; font-size: 36px; -unity-text-align: middle-center; -unity-font-style: bold; -unity-background-image-tint-color: rgba(255, 255, 255, 255); background-color: rgba(0, 0, 0, 255); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+    <ui:Label text="Image Editor" display-tooltip-when-elided="true" name="title" style="height: 50px; font-size: 36px; -unity-text-align: middle-center; -unity-font-style: bold; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
     <ui:DropdownField label="Texture Option" index="0" choices="Genereta new texture , Load Texture" name="texture-option" />
     <ui:VisualElement name="Custom-tex-values" style="white-space: nowrap; flex-direction: row; align-items: flex-start; flex-shrink: 1;">
         <uie:IntegerField label="Width" value="42" name="width-field" style="max-width: 40px; min-width: 40px; flex-grow: 1; flex-direction: column;" />
         <uie:IntegerField label="Height" value="42" name="height-field" style="flex-grow: 0; max-width: 40px; min-width: 40px; flex-wrap: nowrap; width: 71px; justify-content: space-between; flex-direction: column;" />
-        <ui:Button text="Create Texture" display-tooltip-when-elided="true" name="create-text-button" style="flex-grow: 1; flex-direction: column;" />
+        <ui:Button text="Create Texture" display-tooltip-when-elided="true" name="create-tex-button" style="flex-grow: 1; flex-direction: column;" />
     </ui:VisualElement>
     <uie:ObjectField label="Texture" name="texture-field" type="UnityEngine.Texture2D,UnityEngine.CoreModule" />
     <ui:DropdownField label="Alpha Option" index="0" choices="Alpha Whole,Gradient Right,Gradient Left,Gradient Top,Gradient Bottom" name="alpha-dropdown" style="height: 19px;" />
@@ -16,7 +16,7 @@
     <ui:VisualElement style="flex-grow: 1;">
         <uie:ColorField label="Color" value="RGBA(0.000, 1.000, 1.000, 1.000)" name="tint" />
         <ui:VisualElement name="preview-pane" style="flex-grow: 1; background-image: resource(&apos;Transparency500&apos;); align-items: center; justify-content: center;">
-            <ui:VisualElement name="Image-Preview" style="width: 300px; height: 300px;" />
+            <ui:VisualElement name="image-preview" style="width: 300px; height: 300px;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="VisualElement">
